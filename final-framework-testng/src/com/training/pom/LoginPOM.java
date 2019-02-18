@@ -13,26 +13,33 @@ public class LoginPOM {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(id="login")
+	@FindBy(xpath="//*[@id=\"responsive\"]/li[8]/a")
+	private WebElement login; 
+	
+	@FindBy(id="user_login")
 	private WebElement userName; 
 	
-	@FindBy(id="password")
+	@FindBy(id="user_pass")
 	private WebElement password;
 	
-	@FindBy(id="formLogin_submitAuth")
-	private WebElement loginBtn; 
+	@FindBy(name="login")
+	private WebElement signInBtn; 
+	
+	
+	public void clickButton() {
+		this.login.click();;
+	}	
 	
 	public void sendUserName(String userName) {
-		this.userName.clear();
 		this.userName.sendKeys(userName);
 	}
 	
 	public void sendPassword(String password) {
-		this.password.clear(); 
 		this.password.sendKeys(password); 
 	}
 	
-	public void clickLoginBtn() {
-		this.loginBtn.click(); 
+	public void clickSignInBtn() {
+		this.signInBtn.click(); 
 	}
 }
+

@@ -4,24 +4,24 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.training.generics.ScreenShot;
 import com.training.generics.ScreenShot_RealEstate;
-import com.training.pom.SunilLoginPOM;
-import com.training.pom.LoginPOM;
+import com.training.pom.ChangePasswordPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
+public class ChangePasswordTests {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
+	private ChangePasswordPOM changePasswordPOM;
 	private static Properties properties;
 	private ScreenShot_RealEstate screenShot;
 
@@ -35,25 +35,35 @@ public class LoginTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
+		changePasswordPOM = new ChangePasswordPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot_RealEstate(driver); 
-		// open the browser 
+		screenShot = new ScreenShot_RealEstate(driver);
+		// open the browser
 		driver.get(baseUrl);
 	}
-	
+
 	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		driver.quit();
 	}
+
 	@Test
-	public void validLoginTest() {
-		loginPOM.clickButton(); 
-		loginPOM.sendUserName("sennivedita78@gmail.com");
-		loginPOM.sendPassword("nivedita&&112267");
-		loginPOM.clickSignInBtn(); 
-		screenShot.captureScreenShot("Login_To_MyProfile");
+	public void validRegisterTest() {
+		changePasswordPOM.clickButton();
+		changePasswordPOM.sendUserName("sennivedita78@gmail.com");
+		changePasswordPOM.sendPassword("nivedita&&112267");
+		changePasswordPOM.clickSignInBtn();
+		changePasswordPOM.clickChangePassword();
+		changePasswordPOM.sendCurrentPass("nivedita&&112267");
+		changePasswordPOM.sendNewPass("nivedita&&112268");
+		changePasswordPOM.sendConfirmPass("nivedita&&112268");
+		changePasswordPOM.clickSaveChanges();
+		screenShot.captureScreenShot("ChangePassword");
+		
+		String Expected = "Your password has been updated.";
+		String Actual = driver.findElement(By.xpath("//*[@id=\"post-129\"]/div[2]/div/div[1]/div/p")).getText();
+		Assert.assertEquals(Actual, Expected);
+
 	}
 }
-

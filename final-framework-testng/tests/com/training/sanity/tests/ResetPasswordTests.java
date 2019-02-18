@@ -12,16 +12,15 @@ import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
 import com.training.generics.ScreenShot_RealEstate;
-import com.training.pom.SunilLoginPOM;
-import com.training.pom.LoginPOM;
+import com.training.pom.ResetPasswordPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
+public class ResetPasswordTests {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
+	private ResetPasswordPOM resetPasswordPOM;
 	private static Properties properties;
 	private ScreenShot_RealEstate screenShot;
 
@@ -35,9 +34,9 @@ public class LoginTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
+		resetPasswordPOM = new ResetPasswordPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot_RealEstate(driver); 
+		screenShot = new ScreenShot_RealEstate(driver);
 		// open the browser 
 		driver.get(baseUrl);
 	}
@@ -49,11 +48,10 @@ public class LoginTests {
 	}
 	@Test
 	public void validLoginTest() {
-		loginPOM.clickButton(); 
-		loginPOM.sendUserName("sennivedita78@gmail.com");
-		loginPOM.sendPassword("nivedita&&112267");
-		loginPOM.clickSignInBtn(); 
-		screenShot.captureScreenShot("Login_To_MyProfile");
+		resetPasswordPOM.clickButton(); 
+		resetPasswordPOM.clickLostPassword();
+		resetPasswordPOM.sendEmailAddress("sennivedita78@gmail.com");
+		resetPasswordPOM.clickResetPasswordButton(); 
+		screenShot.captureScreenShot("Reset_Password");
 	}
 }
-
