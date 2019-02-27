@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -53,5 +55,13 @@ public class ResetPasswordTests {
 		resetPasswordPOM.sendEmailAddress("sennivedita78@gmail.com");
 		resetPasswordPOM.clickResetPasswordButton(); 
 		screenShot.captureScreenShot("Reset_Password");
+		
+		//Validate the expected result
+		String Expected = "A confirmation link has been sent to your email address.";
+		
+		//It is redirecting to the error page. Raised a defect
+		
+		//String Actual = driver.findElement(By.xpath("")).getText();
+		//Assert.assertEquals(Actual, Expected);
 	}
 }

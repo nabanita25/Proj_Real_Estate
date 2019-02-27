@@ -51,6 +51,8 @@ public class ChangeProfileTests {
 	}
 	@Test
 	public void validLoginTest() throws Exception {
+		
+		//Login with valid credential
 		changeprofilePOM.clickButton(); 
 		changeprofilePOM.sendUserName("sennivedita78@gmail.com");
 		changeprofilePOM.sendPassword("nivedita&&112267");
@@ -63,8 +65,11 @@ public class ChangeProfileTests {
 		changeprofilePOM.sendAgentTitle("Sir");
 		changeprofilePOM.sendPhone("9854564348");
 		changeprofilePOM.clickSaveChanges(); 
+		
+		//To take the screenshot
 		screenShot.captureScreenShot("ChangeProfile");
 		
+		//Validate the expected message
 		String Expected = "Your profile has been updated.";
 		String Actual = driver.findElement(By.xpath("//*[@id=\"post-133\"]/div[2]/div/div[1]/div/p")).getText();
 		Assert.assertEquals(Actual, Expected);

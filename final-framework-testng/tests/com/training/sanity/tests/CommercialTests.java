@@ -12,18 +12,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.training.generics.ScreenShot;
 import com.training.generics.ScreenShot_RealEstate;
-import com.training.pom.SunilLoginPOM;
-import com.training.pom.LoginPOM;
+import com.training.pom.CommercialPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
+public class CommercialTests {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
+	private CommercialPOM commercialPOM;
 	private static Properties properties;
 	private ScreenShot_RealEstate screenShot;
 
@@ -37,35 +35,43 @@ public class LoginTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
+		commercialPOM = new CommercialPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot_RealEstate(driver); 
+		screenShot = new ScreenShot_RealEstate(driver);
 		// open the browser 
 		driver.get(baseUrl);
 	}
 	
 	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		driver.quit();
 	}
 	@Test
 	public void validLoginTest() throws Exception {
 		
-		//Enter credentials for login
-		loginPOM.clickButton(); 
-		loginPOM.sendUserName("sennivedita78@gmail.com");
-		loginPOM.sendPassword("nivedita&&112267");
-		Thread.sleep(3000);
-		loginPOM.clickSignInBtn(); 
+		//Click on 'Commercial' tab and search for Apartments
+		commercialPOM.clickCommercialTab(); 
+		commercialPOM.clickEnterAddress();
+		commercialPOM.clickSearch();
+		Thread.sleep(2000);
+		commercialPOM.clickDropUsALine();
 		
-		//To take the screenshot my login
-		screenShot.captureScreenShot("Login_To_MyProfile");
+		// Enter the following fields:
+		commercialPOM.sendName("ccc");
+		commercialPOM.sendEmail("ccc@gmail.com");
+		commercialPOM.sendSubject("ccc");
+		commercialPOM.sendMessage("ccc");
+		
+		//Click on 'Send' button
+		commercialPOM.clickSendBtn();
+		Thread.sleep(2000);
 		
 		//Validate the expected result
-		String Expected = "Howdy, Nivedita Sen!";
-		String Actual = driver.findElement(By.xpath("//*[@id=\"titlebar\"]/div/div/div/span")).getText();
+		String Expected = "Thanks you for your message.";
+		String Actual = driver.findElement(By.xpath("//*[@id=\"wpcf7-f119-p134-o1\"]/form/div[4]")).getText();
 		Assert.assertEquals(Actual, Expected);
-	}
+		
+    }
 }
 

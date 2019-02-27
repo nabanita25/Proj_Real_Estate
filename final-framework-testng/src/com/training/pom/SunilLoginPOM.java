@@ -13,6 +13,8 @@ public class SunilLoginPOM {
 		PageFactory.initElements(driver, this);
 	}
 	
+	//Inspecting the following web elements:
+	
 	@FindBy(id="login")
 	private WebElement userName; 
 	
@@ -21,6 +23,8 @@ public class SunilLoginPOM {
 	
 	@FindBy(id="formLogin_submitAuth")
 	private WebElement loginBtn; 
+	
+	//Writing the methods after inspecting the web elements:
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();

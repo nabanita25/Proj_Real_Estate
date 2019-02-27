@@ -50,17 +50,24 @@ public class ChangePasswordTests {
 
 	@Test
 	public void validRegisterTest() {
+		
+		//Login with valid credential
 		changePasswordPOM.clickButton();
 		changePasswordPOM.sendUserName("sennivedita78@gmail.com");
 		changePasswordPOM.sendPassword("nivedita&&112267");
 		changePasswordPOM.clickSignInBtn();
 		changePasswordPOM.clickChangePassword();
+		
+		//Enter the current password, new password and confirm the password
 		changePasswordPOM.sendCurrentPass("nivedita&&112267");
 		changePasswordPOM.sendNewPass("nivedita&&112268");
 		changePasswordPOM.sendConfirmPass("nivedita&&112268");
 		changePasswordPOM.clickSaveChanges();
+		
+		//To take the screenshot
 		screenShot.captureScreenShot("ChangePassword");
 		
+		//Validate the expected message
 		String Expected = "Your password has been updated.";
 		String Actual = driver.findElement(By.xpath("//*[@id=\"post-129\"]/div[2]/div/div[1]/div/p")).getText();
 		Assert.assertEquals(Actual, Expected);

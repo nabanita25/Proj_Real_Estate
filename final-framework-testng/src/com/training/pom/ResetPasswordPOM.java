@@ -13,6 +13,8 @@ public class ResetPasswordPOM {
 		PageFactory.initElements(driver, this);
 	}
 	
+	//Inspecting the following web elements:
+	
 	@FindBy(xpath="//*[@id=\"responsive\"]/li[8]/a")
 	private WebElement login; 
 	
@@ -25,6 +27,7 @@ public class ResetPasswordPOM {
 	@FindBy(name="submit")
 	private WebElement resetPassowrd; 
 	
+	//Writing the methods after inspecting the web elements:
 	
 	public void clickButton() {
 		this.login.click();

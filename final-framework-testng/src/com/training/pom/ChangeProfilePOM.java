@@ -14,6 +14,8 @@ public class ChangeProfilePOM {
 		PageFactory.initElements(driver, this);
 	}
 
+	//Inspecting the following web elements:
+	
 	@FindBy(xpath = "//*[@id=\"responsive\"]/li[8]/a")
 	private WebElement login;
 
@@ -40,6 +42,8 @@ public class ChangeProfilePOM {
 
 	@FindBy(xpath = "//*[@id=\"edit_user\"]/button")
 	private WebElement saveChanges;
+	
+	//Writing the methods after inspecting the web elements:
 
 	public void clickButton() {
 		this.login.click();
@@ -58,10 +62,10 @@ public class ChangeProfilePOM {
 	}
 
 	public void clickOnHyperlink() {
-		System.out.println("hyper link is called");
+		//System.out.println("hyper link is called");
 		Actions action = new Actions(driver);
 		action.moveToElement(userhyperlink).build().perform();
-		System.out.println("hyper");
+		//System.out.println("hyper");
 		action.moveToElement(userhyperlink).click();
 		
 	}

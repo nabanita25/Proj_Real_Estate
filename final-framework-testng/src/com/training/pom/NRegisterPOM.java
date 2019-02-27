@@ -13,6 +13,8 @@ public class NRegisterPOM {
 		PageFactory.initElements(driver, this);
 	}
 	
+	//Inspecting the following web elements:
+	
 	@FindBy(xpath="//*[@id=\"responsive\"]/li[8]/a")
 	private WebElement loginBtn; 
 	
@@ -31,6 +33,7 @@ public class NRegisterPOM {
 	@FindBy(xpath="//*[@id=\"signupform\"]/p[5]/input")
 	private WebElement registerBtn;
 	
+	//Writing the methods after inspecting the web elements:
 	
 	public void loginButton() {
 		//this.userName.clear();

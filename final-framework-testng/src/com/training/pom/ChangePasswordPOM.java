@@ -14,6 +14,8 @@ public class ChangePasswordPOM {
 		PageFactory.initElements(driver, this);
 	}
 
+	//Inspecting the following web elements:
+	
 	@FindBy(xpath = "//*[@id=\"responsive\"]/li[8]/a")
 	private WebElement login;
 
@@ -41,6 +43,8 @@ public class ChangePasswordPOM {
 	@FindBy(id = "wp-submit")
 	private WebElement saveChanges;
 
+	//Writing the methods after inspecting the web elements:
+	
 	public void clickButton() {
 		this.login.click();
 	}
