@@ -1,8 +1,11 @@
+//Test Objective: To verify whether application allows to search details & fill inquiry details in Commercial tab
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -54,7 +57,7 @@ public class CommercialTests {
 		commercialPOM.clickCommercialTab(); 
 		commercialPOM.clickEnterAddress();
 		commercialPOM.clickSearch();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		commercialPOM.clickDropUsALine();
 		
 		// Enter the following fields:
@@ -65,7 +68,7 @@ public class CommercialTests {
 		
 		//Click on 'Send' button
 		commercialPOM.clickSendBtn();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//Validate the expected result
 		String Expected = "Thanks you for your message.";

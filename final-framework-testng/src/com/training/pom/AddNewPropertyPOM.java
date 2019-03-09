@@ -1,3 +1,5 @@
+//To inspect the Web elements of the Add New property page
+
 package com.training.pom;
 
 import org.openqa.selenium.By;

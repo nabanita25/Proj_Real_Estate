@@ -1,3 +1,5 @@
+//Test Objective: To verify whether application allows admin to add new property with all details
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;

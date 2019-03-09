@@ -1,3 +1,5 @@
+//To inspect the web elements of the Register page
+
 package com.training.pom;
 
 import org.openqa.selenium.WebDriver;
@@ -45,19 +47,22 @@ public class NRegisterPOM {
 		this.registerTab.click();
 	}
 	
-	public void sendEmail(String email_1) {
+	public String sendEmail(String email_1) {
 		//this.userName.clear();
 		this.email_1.sendKeys(email_1);
+		return this.email_1.getAttribute("value");
 	}
 	
-	public void sendFirstName(String firstName) {
+	public String sendFirstName(String firstName) {
 		//this.password.clear(); 
 		this.firstName.sendKeys(firstName); 
+		return this.firstName.getAttribute("value");
 	}
 	
-	public void sendLastName(String lastName) {
+	public String sendLastName(String lastName) {
 		//this.password.clear(); 
-		this.lastName.sendKeys(lastName); 
+		this.lastName.sendKeys(lastName);
+		return this.lastName.getAttribute("value");
 	}
 	
 	public void clickRegisterBtn() {

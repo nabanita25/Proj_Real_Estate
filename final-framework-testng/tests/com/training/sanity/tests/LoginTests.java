@@ -1,3 +1,5 @@
+//Test Objective: To Verify whether application allows registered user to login into application
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;

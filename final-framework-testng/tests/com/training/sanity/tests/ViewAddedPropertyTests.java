@@ -1,8 +1,11 @@
+//Test Objective: To verify whether application allows admin to view added property details in All Properties window
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -48,7 +51,7 @@ public class ViewAddedPropertyTests {
 		driver.quit();
 	}
 	@Test
-	public void validLoginTest() throws Exception {
+	public void validLoginTest()  {
 		
 		//Log In as a Admin user
 		viewAddeddPropertyPOM.clickButton(); 
@@ -63,11 +66,11 @@ public class ViewAddedPropertyTests {
 		String value="New launch";
 		
 		viewAddeddPropertyPOM.sendPostTitle("New launch");
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		viewAddeddPropertyPOM.sendNewTextArea("New launch2222");
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		viewAddeddPropertyPOM.clickPublishBtn();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//screenShot.captureScreenShot("ViewAddedProperty");
 		
 		//Validate the message after publishing

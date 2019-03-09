@@ -1,8 +1,11 @@
+//Test Objective: To verify whether application allows Admin to view added user in all Users module
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -48,7 +51,7 @@ public class ViewAddedUserTests {
 		driver.quit();
 	}
 	@Test
-	public void validLoginTest() throws Exception {
+	public void validLoginTest()  {
 		
 		//Login with admin user
 		viewAddeddUserPOM.clickButton(); 
@@ -69,13 +72,13 @@ public class ViewAddedUserTests {
 		viewAddeddUserPOM.sendLastName("Das");
 		viewAddeddUserPOM.sendWebsite("www.bing.com");
 		viewAddeddUserPOM.clickShowPassword();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		viewAddeddUserPOM.sendNewPassword("abcd@@&&34543");
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		viewAddeddUserPOM.clickRoleDropdown();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		viewAddeddUserPOM.clickCreateUserBtn();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//The following will take the screenshot
 		screenShot.captureScreenShot("ViewAddedUser");
@@ -84,7 +87,7 @@ public class ViewAddedUserTests {
 		viewAddeddUserPOM.clickAllUsersLink();
 		viewAddeddUserPOM.sendSearchInput("Neela Das");
 		viewAddeddUserPOM.clickSearchSubmit();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//Validate the expected result
 		String Expected = value;

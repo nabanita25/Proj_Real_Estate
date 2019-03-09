@@ -1,8 +1,11 @@
+//Test Objective: To verify whether application allows customer to view, enquire & calculate loan on New launches
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -48,13 +51,13 @@ public class NewLaunchTests {
 		driver.quit();
 	}
 	@Test
-	public void validLoginTest() throws Exception {
+	public void validLoginTest() {
 		
 		//Mouse hover on 'New Launch' tab and click on the image
 		newLaunchPOM.moveToNewLanch(); 
 		newLaunchPOM.clickImage();
 		newLaunchPOM.clickImageBtn();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//Enter the following details and click on 'Send' button
 		newLaunchPOM.sendYourName("aa");
@@ -70,7 +73,7 @@ public class NewLaunchTests {
 		newLaunchPOM.sendInterestRate("5");
 		newLaunchPOM.clickCalculateBtn();
 		
-		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Validate the expected result
 		String Expected = "Monthly Payment: 2105.83 Rs.";
 		String Actual = driver.findElement(By.xpath("//div[@class='notification success']")).getText();

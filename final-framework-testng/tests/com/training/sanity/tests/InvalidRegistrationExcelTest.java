@@ -1,4 +1,4 @@
-//Test Objective: To verify whether application allows the user to recover the password
+//Test Objective: To verify whether application displays error message upon entering invalid details during registration
 
 package com.training.sanity.tests;
 
@@ -14,19 +14,18 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.training.dataproviders.LoginDataProviders;
 import com.training.generics.ScreenShot;
-import com.training.generics.ScreenShot_RealEstate;
-import com.training.pom.ResetPasswordPOM;
+import com.training.pom.NRegisterPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class ResetPasswordTests {
-
+public class InvalidRegistrationExcelTest {
 	private WebDriver driver;
 	private String baseUrl;
-	private ResetPasswordPOM resetPasswordPOM;
+	private NRegisterPOM registerPOM;
 	private static Properties properties;
-	private ScreenShot_RealEstate screenShot;
+	private ScreenShot screenShot;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
@@ -38,32 +37,33 @@ public class ResetPasswordTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		resetPasswordPOM = new ResetPasswordPOM(driver); 
+		registerPOM = new NRegisterPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot_RealEstate(driver);
-		// open the browser 
+		screenShot = new ScreenShot(driver);
+		// open the browser
 		driver.get(baseUrl);
 	}
-	
+
 	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
 		driver.quit();
 	}
-	@Test
-	public void validLoginTest() {
-		resetPasswordPOM.clickButton(); 
-		resetPasswordPOM.clickLostPassword();
-		resetPasswordPOM.sendEmailAddress("sennivedita78@gmail.com");
-		resetPasswordPOM.clickResetPasswordButton(); 
-		screenShot.captureScreenShot("Reset_Password");
+
+	@Test(dataProvider = "excel-inputs", dataProviderClass = LoginDataProviders.class)
+	public void loginDBTest(String email_1, String firstName, String lastName) {
 		
-		//Validate the expected result
-		String Expected = "A confirmation link has been sent to your email address.";
-		
-		//It is redirecting to the error page. Raised a defect
-		
-		//String Actual = driver.findElement(By.xpath("")).getText();
-		//Assert.assertEquals(Actual, Expected);
+		//Go to Register tab and enter the details
+		registerPOM.clickRegisterTab();
+		registerPOM.sendEmail(email_1);
+		registerPOM.sendFirstName(firstName);
+		registerPOM.sendLastName(lastName);
+		registerPOM.clickRegisterBtn();
+				
+		//To validate the expected message after registration
+		String Expected = "The email address you entered is not valid.";
+		String Actual = driver.findElement(By.xpath("//*[@id=\"post-133\"]/div/div/div/div[1]/p")).getText();
+		Assert.assertEquals(Actual, Expected);
+
 	}
+
 }

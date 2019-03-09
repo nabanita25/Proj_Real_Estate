@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.training.sanity.tests.ResetPasswordTests">
+      <class name="com.training.sanity.tests.PostTests">
         <methods>
+          <include name="tearDown"/>
           <include name="validLoginTest"/>
           <include name="setUp"/>
-          <include name="tearDown"/>
           <include name="setUpBeforeClass"/>
         </methods>
-      </class> <!-- com.training.sanity.tests.ResetPasswordTests -->
+      </class> <!-- com.training.sanity.tests.PostTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

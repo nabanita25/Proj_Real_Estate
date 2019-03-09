@@ -1,3 +1,5 @@
+//Test Objective: To verify whether application allows the user to change the password
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
